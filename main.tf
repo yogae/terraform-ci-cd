@@ -1,6 +1,7 @@
 module "svn_codebuild" {
   source = "./lib/codebuild"
 
+  codebuild_name = "${var.codebuild_name}"
   vpc_id = "${var.vpc_id}"
   subnets = "${var.subnets}"
   security_group_ids = "${var.security_group_ids}"

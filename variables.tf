@@ -22,3 +22,7 @@ variable "artifacts_type" {
     type = string
     default = "NO_ARTIFACTS"
 }
+
+variable "codebuild_name" {
+    type = string
+}
