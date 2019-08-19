@@ -8,6 +8,7 @@ resource "aws_iam_role" "svn_codebuild_role" {
 
   assume_role_policy = <<EOF
 {
+
   "Version": "2012-10-17",
   "Statement": [
     {
@@ -68,6 +69,19 @@ resource "aws_iam_role_policy" "svn_codebuild_role_policy" {
 POLICY
 }
 
+locals {
+  codebuild_artifacts_def = {
+    CODEPIPELINE = {
+      type = "CODEPIPELINE"
+    }
+    NO_ARTIFACTS = {
+      type = "NO_ARTIFACTS"
+    }
+  }
+  
+  codebuild_artifacts = "${local.codebuild_artifacts_def[var.artifacts_type]}"
+}
+
 resource "aws_codebuild_project" "svn_codebuild" {
   name          = "svn_codebuild"
   description   = "svn codebuild"
@@ -75,7 +89,7 @@ resource "aws_codebuild_project" "svn_codebuild" {
   service_role  = "${aws_iam_role.svn_codebuild_role.arn}"
 
   artifacts {
-    type = "NO_ARTIFACTS"
+    type = "${local.codebuild_artifacts.type}"
   }
 
   cache {

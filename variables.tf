@@ -33,3 +33,8 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
     type = string
 }
+
+variable "artifacts_type" {
+    type = string
+    default = "NO_ARTIFACTS"
+}

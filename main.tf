@@ -6,4 +6,5 @@ module "svn_codebuild" {
   security_group_ids = "${var.security_group_ids}"
   code_source = "${var.codebuild_source}"
   s3_bucket_name = "${var.codebuild_s3_bucket_name}"
+  artifacts_type = "${var.artifacts_type}"
 }

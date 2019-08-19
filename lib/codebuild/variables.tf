@@ -17,3 +17,8 @@ variable "code_source" {
 variable "s3_bucket_name" {
     type = string
 }
+
+variable "artifacts_type" {
+    type = string
+    default = "NO_ARTIFACTS"
+}
