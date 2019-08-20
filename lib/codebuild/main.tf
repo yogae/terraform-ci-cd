@@ -1,8 +1,3 @@
-resource "aws_s3_bucket" "svn_codebuild_s3" {
-  bucket = "${var.s3_bucket_name}"
-  acl    = "private"
-}
-
 resource "aws_iam_role" "svn_codebuild_role" {
   name = "svn_codebuild_role"
 
@@ -60,8 +55,8 @@ resource "aws_iam_role_policy" "svn_codebuild_role_policy" {
         "s3:*"
       ],
       "Resource": [
-        "${aws_s3_bucket.svn_codebuild_s3.arn}",
-        "${aws_s3_bucket.svn_codebuild_s3.arn}/*"
+        "arn:aws:s3:::${var.s3_bucket_name}",
+        "arn:aws:s3:::${var.s3_bucket_name}/*"
       ]
     }
   ]
